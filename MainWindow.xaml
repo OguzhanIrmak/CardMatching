@@ -1,0 +1,140 @@
+﻿<Window x:Class="CardMatching.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CardMatching"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        Background="LightPink">
+    <Window.Resources>
+        <Style TargetType="TextBox" x:Key="txtBox">
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="50"/>
+            <Setter Property="Background" Value="LightPink"/>
+            <Setter Property="Height" Value="100"/>
+
+        </Style>
+        <Style TargetType="Button" x:Key="Button">
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Background" Value="MistyRose"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="FontSize" Value="25"/>
+
+        </Style>
+    </Window.Resources>
+
+        <Grid>
+        <Grid>
+            
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Name="StartGameButton" Content="New Game" Style="{StaticResource Button}"
+              Grid.Row="1" Grid.Column="0" Click="StartGameButton_Click"/>
+            <Button Name="ExitButton" Content="Exit"
+                    Style="{StaticResource Button}"
+                    Grid.Row="1" Grid.Column="1" Click="ExitButton_Click"/>
+            <CheckBox Grid.Row="2" Grid.Column="0" Name="CheckBox" Checked="CheckBox_Checked">
+                
+                
+      
+                
+            </CheckBox>
+
+            <TextBox Text="Main Menu" Style="{StaticResource txtBox}"
+                     Grid.Row="0" Grid.ColumnSpan="2" 
+                     Margin="170,20,170,20"/>
+        </Grid>
+
+
+        <DockPanel x:Name="GameScreen" Visibility="Collapsed">
+
+            <StackPanel DockPanel.Dock="Left" Width="130" Background="LightPink">
+                <Label x:Name="TimerLabel" Content="01:00"
+               VerticalAlignment="Top"
+               HorizontalAlignment="Center"
+               FontSize="40"
+               FontWeight="ExtraBold"
+               Margin="5"/>
+
+            </StackPanel>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="Button00" Grid.Row="0" Grid.Column="0" Click="Card_Click">
+                    <Image Source="C:\Users\oguzh\source\repos\CardMatching\Images\letter.png" Stretch="Fill"/>
+                </Button>
+                <Button x:Name="Button01" Grid.Row="0" Grid.Column="1" Click="Card_Click">
+                    <Image Source="C:\Users\oguzh\source\repos\CardMatching\Images\letter.png" Stretch="Fill"/>
+                </Button>
+                <Button x:Name="Button02" Grid.Row="0" Grid.Column="2" Click="Card_Click">
+                    <Image Source="C:\Users\oguzh\source\repos\CardMatching\Images\letter.png" Stretch="Fill"/>
+                </Button>
+                <Button x:Name="Button03" Grid.Row="0" Grid.Column="3" Click="Card_Click">
+                    <Image Source="C:\Users\oguzh\source\repos\CardMatching\Images\letter.png" Stretch="Fill"/>
+                </Button>
+                <Button x:Name="Button10" Grid.Row="1" Grid.Column="0" Click="Card_Click">
+                    <Image Source="C:\Users\oguzh\source\repos\CardMatching\Images\letter.png" Stretch="Fill"/>
+                </Button>
+                <Button x:Name="Button11" Grid.Row="1" Grid.Column="1" Click="Card_Click">
+                    <Image Source="C:\Users\oguzh\source\repos\CardMatching\Images\letter.png" Stretch="Fill"/>
+                </Button>
+                <Button  x:Name="Button12" Grid.Row="1" Grid.Column="2" Click="Card_Click">
+                    <Image Source="C:\Users\oguzh\source\repos\CardMatching\Images\letter.png" Stretch="Fill"/>
+                </Button>
+                <Button  x:Name="Button13" Grid.Row="1" Grid.Column="3" Click="Card_Click">
+                    <Image Source="C:\Users\oguzh\source\repos\CardMatching\Images\letter.png" Stretch="Fill"/>
+                </Button>
+                <Button  x:Name="Button20" Grid.Row="2" Grid.Column="0" Click="Card_Click">
+                    <Image Source="C:\Users\oguzh\source\repos\CardMatching\Images\letter.png" Stretch="Fill"/>
+                </Button>
+                <Button  x:Name="Button21" Grid.Row="2" Grid.Column="1" Click="Card_Click">
+                    <Image Source="C:\Users\oguzh\source\repos\CardMatching\Images\letter.png" Stretch="Fill"/>
+                </Button>
+                <Button  x:Name="Button22" Grid.Row="2" Grid.Column="2" Click="Card_Click">
+                    <Image Source="C:\Users\oguzh\source\repos\CardMatching\Images\letter.png" Stretch="Fill"/>
+                </Button>
+                <Button  x:Name="Button23" Grid.Row="2" Grid.Column="3" Click="Card_Click">
+                    <Image Source="C:\Users\oguzh\source\repos\CardMatching\Images\letter.png" Stretch="Fill"/>
+                </Button>
+                <Button  x:Name="Button30" Grid.Row="3" Grid.Column="0" Click="Card_Click">
+                    <Image Source="C:\Users\oguzh\source\repos\CardMatching\Images\letter.png" Stretch="Fill"/>
+                </Button>
+                <Button  x:Name="Button31" Grid.Row="3" Grid.Column="1" Click="Card_Click">
+                    <Image Source="C:\Users\oguzh\source\repos\CardMatching\Images\letter.png" Stretch="Fill"/>
+                </Button>
+                <Button x:Name="Button32" Grid.Row="3" Grid.Column="2" Click="Card_Click">
+                    <Image Source="C:\Users\oguzh\source\repos\CardMatching\Images\letter.png" Stretch="Fill"/>
+                </Button>
+                <Button x:Name="Button33" Grid.Row="3" Grid.Column="3" Click="Card_Click">
+                    <Image Source="C:\Users\oguzh\source\repos\CardMatching\Images\letter.png" Stretch="Fill"/>
+                </Button>
+            </Grid>
+        </DockPanel>
+    </Grid>
+
+
+
+
+</Window>
