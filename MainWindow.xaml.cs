@@ -294,6 +294,14 @@ namespace CardMatching
                 gameTime = TimeSpan.FromSeconds(60); // Default to 1 minute
             }
         }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            ResetGame();
+            MenuScreen.Visibility = Visibility.Visible;
+            GameScreen.Visibility = Visibility.Collapsed;
+
+        }
     }
 }
     

@@ -56,7 +56,7 @@
                     Grid.Row="1" Grid.Column="1" Click="ExitButton_Click"/>
             
 
-            <TextBox Text="Main Menu" Style="{StaticResource txtBox}"
+            <TextBox Text="Match the Cards!" Style="{StaticResource txtBox}"
                      Grid.Row="0" Grid.ColumnSpan="2" 
                      Margin="170,20,170,20"/>
 
@@ -75,13 +75,19 @@
 
         <DockPanel x:Name="GameScreen" Visibility="Collapsed">
 
-            <StackPanel DockPanel.Dock="Left" Width="130" Background="LightPink">
+            <StackPanel DockPanel.Dock="Left" Width="130" Background="LightPink" Orientation="Vertical">
                 <Label x:Name="TimerLabel" Content="01:00"
                VerticalAlignment="Top"
                HorizontalAlignment="Center"
                FontSize="40"
                FontWeight="ExtraBold"
                Margin="5"/>
+                <Button x:Name="BackButton" Content="Back" Style="{StaticResource Button}"
+                        Width="120"
+                        Margin="5,150,5,0"
+                        Click="BackButton_Click"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"/>
 
             </StackPanel>
             <Grid>
