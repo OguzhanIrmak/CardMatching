@@ -11,14 +11,14 @@ namespace CardMatching
         private List<Card> cards;
         private readonly string[] imagePaths =
         {
-            "C:\\Users\\oguzh\\source\\repos\\CardMatching\\Images\\daisy.png",
-            "C:\\Users\\oguzh\\source\\repos\\CardMatching\\Images\\flower.png",
-            "C:\\Users\\oguzh\\source\\repos\\CardMatching\\Images\\lavender.png",
-            "C:\\Users\\oguzh\\source\\repos\\CardMatching\\Images\\leaf.png",
-            "C:\\Users\\oguzh\\source\\repos\\CardMatching\\Images\\mushroom.png",
-            "C:\\Users\\oguzh\\source\\repos\\CardMatching\\Images\\sunflower.png",
-            "C:\\Users\\oguzh\\source\\repos\\CardMatching\\Images\\tree (1).png",
-            "C:\\Users\\oguzh\\source\\repos\\CardMatching\\Images\\tree.png",
+            "C:\\Users\\oguzh\\source\\repos\\Yeni klasör\\Images\\daisy.png",
+            "C:\\Users\\oguzh\\source\\repos\\Yeni klasör\\Images\\flower.png",
+            "C:\\Users\\oguzh\\source\\repos\\Yeni klasör\\Images\\lavender.png",
+            "C:\\Users\\oguzh\\source\\repos\\Yeni klasör\\Images\\leaf.png",
+            "C:\\Users\\oguzh\\source\\repos\\Yeni klasör\\Images\\mushroom.png",
+            "C:\\Users\\oguzh\\source\\repos\\Yeni klasör\\Images\\sunflower.png",
+            "C:\\Users\\oguzh\\source\\repos\\Yeni klasör\\Images\\tree (1).png",
+            "C:\\Users\\oguzh\\source\\repos\\Yeni klasör\\Images\\tree.png",
       };
 
         public GameState() 

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CardMatching"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="CardMatching" Height="450" Width="800"
         Background="LightPink">
     <Window.Resources>
         <Style TargetType="TextBox" x:Key="txtBox">
@@ -23,37 +23,53 @@
             <Setter Property="Background" Value="MistyRose"/>
             <Setter Property="FontStyle" Value="Italic"/>
             <Setter Property="FontSize" Value="25"/>
+            <Setter Property="BorderBrush" Value="LightPink"/>
 
+        </Style>
+        <Style TargetType="CheckBox" x:Key="chcBox">
+            <Setter Property="Margin" Value="10,10,10,0"/>
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="BorderBrush" Value="LightPink"/>
         </Style>
     </Window.Resources>
 
         <Grid>
-        <Grid>
+        <Grid Visibility="Visible" x:Name="MenuScreen">
             
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
+            
             <Button Name="StartGameButton" Content="New Game" Style="{StaticResource Button}"
               Grid.Row="1" Grid.Column="0" Click="StartGameButton_Click"/>
+            
             <Button Name="ExitButton" Content="Exit"
                     Style="{StaticResource Button}"
                     Grid.Row="1" Grid.Column="1" Click="ExitButton_Click"/>
-            <CheckBox Grid.Row="2" Grid.Column="0" Name="CheckBox" Checked="CheckBox_Checked">
-                
-                
-      
-                
-            </CheckBox>
+            
 
             <TextBox Text="Main Menu" Style="{StaticResource txtBox}"
                      Grid.Row="0" Grid.ColumnSpan="2" 
                      Margin="170,20,170,20"/>
+
+            <StackPanel Grid.Row="2" Grid.ColumnSpan="1" Orientation="Vertical" HorizontalAlignment="Stretch" Margin="0,20,0,0">
+                <TextBox Text="Choose One !" Background="LightPink" FontSize="15" FontWeight="Bold" Margin="10,0,0,0" BorderBrush="LightPink"/>
+                <CheckBox Name="Timer30Sec" Content="30 Seconds" Checked="TimerCheckBox_Checked" Unchecked="TimerCheckBox_Unchecked"
+                          Style="{StaticResource chcBox}"/>
+                <CheckBox Name="Timer1Min" Content="1 Minute" Checked="TimerCheckBox_Checked" Unchecked="TimerCheckBox_Unchecked"
+                          Style="{StaticResource chcBox}"/>
+                <CheckBox Name="Timer2Min" Content="2 Minutes" Checked="TimerCheckBox_Checked" Unchecked="TimerCheckBox_Unchecked"
+                          Style="{StaticResource chcBox}"/>
+            </StackPanel>
+            
         </Grid>
 
 

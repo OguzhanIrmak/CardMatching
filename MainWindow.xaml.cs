@@ -33,6 +33,7 @@ namespace CardMatching
         private MediaPlayer winSound;
         private DispatcherTimer timer;
         private TimeSpan gameTime;
+        private int currentPair = 0;
         public MainWindow()
         {
             InitializeComponent();
@@ -68,7 +69,7 @@ namespace CardMatching
                 button.Tag = card;
                 button.Content = new System.Windows.Controls.Image
                 {
-                    Source = new BitmapImage(new Uri("C:\\Users\\oguzh\\source\\repos\\CardMatching\\Images\\letter.png")), 
+                    Source = new BitmapImage(new Uri("C:\\Users\\oguzh\\source\\repos\\Yeni klasör\\Images\\letter.png")), 
                     Stretch = System.Windows.Media.Stretch.Fill
                 };
             }
@@ -77,16 +78,16 @@ namespace CardMatching
         private void InitializeSound()
         {
             clickSound = new MediaPlayer();
-            clickSound.Open(new Uri("C:\\Users\\oguzh\\source\\repos\\CardMatching\\Images\\Sounds\\mixkit-select-click-1109.wav"));
+            clickSound.Open(new Uri("C:\\Users\\oguzh\\source\\repos\\Yeni klasör\\Images\\Sounds\\mixkit-select-click-1109.wav"));
 
             correctMatch = new MediaPlayer();
-            correctMatch.Open(new Uri("C:\\Users\\oguzh\\source\\repos\\CardMatching\\Images\\Sounds\\mixkit-correct-answer-reward-952.wav"));
+            correctMatch.Open(new Uri("C:\\Users\\oguzh\\source\\repos\\Yeni klasör\\Images\\Sounds\\mixkit-correct-answer-reward-952.wav"));
 
             gameOverSound = new MediaPlayer();
-            gameOverSound.Open(new Uri("C:\\Users\\oguzh\\source\\repos\\CardMatching\\Images\\Sounds\\mixkit-player-losing-or-failing-2042.wav"));
+            gameOverSound.Open(new Uri("C:\\Users\\oguzh\\source\\repos\\Yeni klasör\\Images\\Sounds\\mixkit-player-losing-or-failing-2042.wav"));
 
             winSound = new MediaPlayer();
-            winSound.Open(new Uri("C:\\Users\\oguzh\\source\\repos\\CardMatching\\Images\\Sounds\\mixkit-game-level-completed-2059.wav"));
+            winSound.Open(new Uri("C:\\Users\\oguzh\\source\\repos\\Yeni klasör\\Images\\Sounds\\mixkit-game-level-completed-2059.wav"));
         }
         private void UpdateTimerDisplay()
         {
@@ -100,12 +101,34 @@ namespace CardMatching
             {
                 timer.Stop();
                 UnsuccessfulGameOverSound();
-                MessageBox.Show("Game Over", "Time is Up");
-                
+                var result=MessageBox.Show("Game Over", "Time is Up");
+                if (result == MessageBoxResult.OK)
+                {
+                    
+                    MenuScreen.Visibility = Visibility.Visible;
+                    GameScreen.Visibility = Visibility.Collapsed;
+                }
+
             }
             UpdateTimerDisplay();
 
         }
+
+        private void SuccesfulGameOver()
+        {
+            
+                timer.Stop();
+                SuccesfulGameOverSound();
+                var result1=MessageBox.Show("YOU WİN!");
+            if (result1 == MessageBoxResult.OK)
+            {
+                
+                MenuScreen.Visibility = Visibility.Visible;
+                GameScreen.Visibility = Visibility.Collapsed;
+            }
+
+        }
+        
 
         private void InitializeTimer()
         {
@@ -113,9 +136,7 @@ namespace CardMatching
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += Timer_Tick;
-            timer.Start();
-
-            UpdateTimerDisplay();
+           
         }
         private void PlayClickSound()
         {
@@ -177,13 +198,18 @@ namespace CardMatching
                 _firstCard.IsMatched = true;
                 _secondCard.IsMatched = true;
                 PlayCorrectSound();
+                currentPair++;
+                if (currentPair >= 8) 
+                {
+                    SuccesfulGameOver();
+                }
             }
             else
             {
                 // Eşleşmedi
                 await Task.Delay(800); // Kartları 0,8 saniye göster
-                ((System.Windows.Controls.Image)firstCard.Content).Source = new BitmapImage(new Uri("C:\\Users\\oguzh\\source\\repos\\CardMatching\\Images\\letter.png"));
-                ((System.Windows.Controls.Image)secondCard.Content).Source = new BitmapImage(new Uri("C:\\Users\\oguzh\\source\\repos\\CardMatching\\Images\\letter.png"));
+                ((System.Windows.Controls.Image)firstCard.Content).Source = new BitmapImage(new Uri("C:\\Users\\oguzh\\source\\repos\\Yeni klasör\\Images\\letter.png"));
+                ((System.Windows.Controls.Image)secondCard.Content).Source = new BitmapImage(new Uri("C:\\Users\\oguzh\\source\\repos\\Yeni klasör\\Images\\letter.png"));
             }
 
             firstCard = null;
@@ -191,19 +217,82 @@ namespace CardMatching
             isChecking = false;
         }
 
+        private void ResetGame()
+        {
+            firstCard = null;
+            secondCard = null;
+            isChecking = false;
+            gameState = new GameState();
+            LoadCards();
+            SetGameTime();
+            UpdateTimerDisplay();
+        }
+
         private void StartGameButton_Click(object sender, RoutedEventArgs e)
         {
+            MenuScreen.Visibility = Visibility.Collapsed;
+            GameScreen.Visibility = Visibility.Visible;
+            ResetGame();
+            LoadCards();
+            timer.Start();
+            
+            
 
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
+            this.Close();
 
         }
 
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        private void TimerCheckBox_Checked(object sender, RoutedEventArgs e)
         {
+            // Only allow one checkbox to be checked at a time
+            if (sender == Timer30Sec)
+            {
+                Timer1Min.IsChecked = false;
+                Timer2Min.IsChecked = false;
+            }
+            else if (sender == Timer1Min)
+            {
+                Timer30Sec.IsChecked = false;
+                Timer2Min.IsChecked = false;
+            }
+            else if (sender == Timer2Min)
+            {
+                Timer30Sec.IsChecked = false;
+                Timer1Min.IsChecked = false;
+            }
+        }
 
+        private void TimerCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            // If none are checked, default to 1 minute
+            if (!(Timer30Sec.IsChecked ?? false) && !(Timer1Min.IsChecked ?? false) && !(Timer2Min.IsChecked ?? false))
+            {
+                Timer1Min.IsChecked = true;
+            }
+        }
+
+        private void SetGameTime()
+        {
+            if (Timer30Sec.IsChecked ?? false)
+            {
+                gameTime = TimeSpan.FromSeconds(30);
+            }
+            else if (Timer1Min.IsChecked ?? false)
+            {
+                gameTime = TimeSpan.FromSeconds(60);
+            }
+            else if (Timer2Min.IsChecked ?? false)
+            {
+                gameTime = TimeSpan.FromSeconds(120);
+            }
+            else
+            {
+                gameTime = TimeSpan.FromSeconds(60); // Default to 1 minute
+            }
         }
     }
 }
