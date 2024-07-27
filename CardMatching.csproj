@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>heart_icon-icons.com_54429.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -118,6 +121,9 @@
   <ItemGroup>
     <Resource Include="Images\Sounds\mixkit-game-level-completed-2059.wav" />
     <Resource Include="Images\Sounds\mixkit-player-losing-or-failing-2042.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="heart_icon-icons.com_54429.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
