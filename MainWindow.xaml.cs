@@ -46,6 +46,7 @@ namespace CardMatching
         {
             gameState = new GameState();
             LoadCards();
+           
         }
 
         private void LoadCards()
@@ -104,7 +105,7 @@ namespace CardMatching
                 var result=MessageBox.Show("Game Over", "Time is Up");
                 if (result == MessageBoxResult.OK)
                 {
-                    
+                    ResetGame();
                     MenuScreen.Visibility = Visibility.Visible;
                     GameScreen.Visibility = Visibility.Collapsed;
                 }
@@ -122,7 +123,7 @@ namespace CardMatching
                 var result1=MessageBox.Show("YOU WİN!");
             if (result1 == MessageBoxResult.OK)
             {
-                
+                ResetGame();
                 MenuScreen.Visibility = Visibility.Visible;
                 GameScreen.Visibility = Visibility.Collapsed;
             }
@@ -222,6 +223,7 @@ namespace CardMatching
             firstCard = null;
             secondCard = null;
             isChecking = false;
+            currentPair = 0;
             gameState = new GameState();
             LoadCards();
             SetGameTime();
